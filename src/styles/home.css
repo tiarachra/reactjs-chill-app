@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
+#root {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -13,6 +20,8 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     color: #ffffff;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar {
@@ -174,8 +183,8 @@ body {
     gap: 12px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Mengunci teks & tombol agar wajib rata kiri */
-    text-align: left;        /* Menjinakkan sisa text-center global */
+    align-items: flex-start; 
+    text-align: left;        
 }
 
 .hero-content h1 {
@@ -208,8 +217,9 @@ body {
 .hero-content-button {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 8px; 
-    width: 100%; /* Ditambah agar ikon suara punya ruang geser ke kanan */
+    width: 100%; 
 }
 
 .btn-mulai {
@@ -277,8 +287,9 @@ body {
 .volume-off {
     width: 24px;
     height: 25px;
+    position: static;
     object-fit: cover;
-    margin-left: auto; /* Mendorong paksa ke ujung kanan */
+    margin-left: auto; 
     cursor: pointer;
     flex-shrink: 0;
 }
@@ -599,12 +610,17 @@ footer {
         HERO DESKTOP
     ================================ */
     .hero-content {
-        bottom: 60px;
-        left: 40px;
-        right: auto;
-        max-width: 480px;
-        align-items: flex-start;
-        text-align: left;
+    position: absolute;
+    bottom: 16px;
+    left: 20px;
+    right: 10px;       
+    z-index: 2;
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: calc(100% - 50px); 
     }
 
     .hero-content h1 {
@@ -620,6 +636,7 @@ footer {
         overflow: visible;
         margin-bottom: 20px;
         text-align: left;
+        max-width: 500px;
     }
 
     .btn-mulai {
