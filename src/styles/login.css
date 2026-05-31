@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif; 
+}
+
+/* Hapus properti background di body biar gak bocor ke Home */
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Mengubah container login menjadi pengunci penuh layar & penarik ke tengah */
+.login-container {
+    background-image: url(/images/login-background.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.login-card {
+    width: 306px;
+    max-width: 529px;
+    height: fit-content;
+    background-color: #181A1CD6;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 22.59px 24px;
+    gap: 20px;
+}
+
+#icon-logo {
+    width: auto;
+    height: 24px;
+}
+
+.login-card-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4.62px;
+}
+
+.login-card-title h1 {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    line-height: 140%;
+    letter-spacing: 0.2px;
+    text-align: center;
+}
+
+.login-card-title p {
+    font-size: 10px;
+    font-weight: 400;
+    color: white;
+    line-height: 140%;
+    letter-spacing: 0.2px;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3.47px;
+    position: relative;
+}
+
+.form-group:nth-child(2) {
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+.form-group label {
+    font-size: 10px;
+    font-weight: 500;
+    color: white;
+    line-height: 140%;
+    letter-spacing: 0.2px;
+    width: 100%;
+}
+
+.form-group input {
+    width: 100%;
+    height: 28px;
+    background-color: transparent;
+    border: 0.58px solid rgba(231, 227, 252, 0.23);
+    border-radius: 12px;
+    padding: 8px 12px;
+    color: #c1c2c4;
+    font-size: 9.24px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0.12px;
+    text-align: left;
+}
+
+.form-group img {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    cursor: pointer;
+    align-self: end;
+}
+
+.login-card-additional-action {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.login-card-additional-action p {
+    font-size: 10px;
+    font-weight: 500;
+    color: #c1c2c4;
+    line-height: 140%;
+    letter-spacing: 0.2px;
+    text-align: center;
+}
+
+.login-card-additional-action a {
+    font-size: 10px;
+    font-weight: 500;
+    color: white;
+    line-height: 140%;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+}
+
+.login-card-additional-action a:hover {
+    text-decoration: underline;
+}
+
+.login-card-action {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.login-button {
+    width: 100%;
+    height: 30px;
+    background-color: transparent;
+    border-radius: 12px;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 140%;
+    letter-spacing: 0.2px;
+    text-align: center;
+    border: 1px solid rgba(231, 227, 252, 0.23);
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #3d4142;
+}
+
+.login-card-action p {
+    font-size: 10px;
+    font-weight: 500;
+    color: #9d9ea1;
+    line-height: 140%;
+    letter-spacing: 0.2px;
+    text-align: center;
+}
+
+.google-login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.google-login-button img {
+    width: 10px;
+    height: 10px;
+}
