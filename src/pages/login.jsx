@@ -14,7 +14,6 @@ const Login = () => {
         </div>
 
         <form onSubmit={(e) => e.preventDefault()} method="post">
-          {/* Menggunakan komponen InputField untuk Username */}
           <InputField 
             label="Username" 
             type="text" 
@@ -23,7 +22,6 @@ const Login = () => {
             placeholder="Masukkan username" 
           />
 
-          {/* Menggunakan komponen InputField untuk Kata Sandi */}
           <InputField 
             label="Kata Sandi" 
             type="password" 
