@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../styles/home.css';
 import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import MovieCard from '../components/movie_card';
+import { getMovies, addMovie, updateMovie, deleteMovie } from '../services/api/movies';
 
 const Home = () => {
-  const [daftarFilm, setDaftarFilm] = useState([
-    { id: 1, judul: "Don't Look Up", rating: "4.5/5", image: "/images/dont-look-up.png" },
-    { id: 2, judul: "The Batman", rating: "4.2/5", image: "/images/aouad.png" },
-    { id: 3, judul: "Blue Lock", rating: "4.6/5", image: "/images/bluelock.png" },
-  ]);
+  const [daftarFilm, setDaftarFilm] = useState([]);
 
   const [inputJudul, setInputJudul] = useState('');
   const [inputRating, setInputRating] = useState('');
@@ -17,45 +15,72 @@ const Home = () => {
   
   const [idFilmDiedit, setIdFilmDiedit] = useState(null);
 
-  const simpanFilm = (e) => {
+  const muatDataFilm = async () => {
+    try {
+      const data = await getMovies();
+      setDaftarFilm(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Gagal mengambil data film:", error);
+      
+      try {
+        const response = await axios.get("https://6a433f386dba791499aa58bb.mockapi.io/api/v1/movies");
+        setDaftarFilm(Array.isArray(response.data) ? response.data : []);
+      } catch (err) {
+        setDaftarFilm([]);
+      }
+    }
+  };
+
+  useEffect(() => {
+    muatDataFilm();
+  }, []);
+
+  const simpanFilm = async (e) => {
     e.preventDefault();
     if (!inputJudul || !inputRating) return alert('Silakan isi judul dan rating terlebih dahulu!');
 
-    if (idFilmDiedit !== null) {
-      const dataDiupdate = daftarFilm.map((film) => {
-        if (film.id === idFilmDiedit) {
-          return { ...film, judul: inputJudul, rating: inputRating, image: inputImage };
-        }
-        return film;
-      });
-      setDaftarFilm(dataDiupdate);
-      setIdFilmDiedit(null);
-    } else {
-      const filmBaru = {
-        id: Date.now(),
-        judul: inputJudul,
-        rating: inputRating,
-        image: inputImage
-      };
-      setDaftarFilm([...daftarFilm, filmBaru]);
-    }
+    const payloadFilm = {
+      title: inputJudul,
+      rating: inputRating,
+      image: inputImage,
+      category: "Film" 
+    };
 
-    setInputJudul('');
-    setInputRating('');
-    setInputImage('/images/aouad.png');
+    try {
+      if (idFilmDiedit !== null) {
+        // Proses UPDATE ke API
+        await updateMovie(idFilmDiedit, payloadFilm);
+        setIdFilmDiedit(null);
+      } else {
+        // Proses CREATE ke API
+        await addMovie(payloadFilm);
+      }
+      
+      muatDataFilm();
+
+      setInputJudul('');
+      setInputRating('');
+      setInputImage('/images/aouad.png');
+    } catch (error) {
+      alert("Gagal menyimpan data ke server.");
+    }
   };
 
   const pemicuEdit = (film) => {
     setIdFilmDiedit(film.id);
-    setInputJudul(film.judul);
+    setInputJudul(film.title);
     setInputRating(film.rating);
     setInputImage(film.image);
   };
 
-  const hapusFilm = (id) => {
+  const hapusFilm = async (id) => {
     if (confirm('Apakah Anda benar ingin menghapus film ini?')) {
-      const sisaFilm = daftarFilm.filter((film) => film.id !== id);
-      setDaftarFilm(sisaFilm);
+      try {
+        await deleteMovie(id);
+        muatDataFilm();
+      } catch (error) {
+        alert("Gagal menghapus data dari server.");
+      }
     }
   };
 
@@ -88,7 +113,7 @@ const Home = () => {
           <img src="/images/arrow-left-icon.png" alt="arrow-left" className="arrow-left-icon" />
           <div className="movie-slider-1">
             {daftarFilm.map((film) => (
-              <MovieCard key={film.id} image={film.image} title={film.judul} rating={film.rating} cardType="1" />
+              <MovieCard key={film.id} image={film.image} title={film.title} rating={film.rating} cardType="1" />
             ))}
           </div>
           <img src="/images/arrow-left-icon.png" alt="arrow-right" className="arrow-right-icon" />
@@ -177,9 +202,9 @@ const Home = () => {
                 {daftarFilm.map((film) => (
                   <tr key={film.id}>
                     <td>
-                      <img src={film.image} alt={film.judul} className="poster-mini" />
+                      <img src={film.image} alt={film.title} className="poster-mini" />
                     </td>
-                    <td className="judul-bold">{film.judul}</td>
+                    <td className="judul-bold">{film.title}</td> 
                     <td className="rating-star">{film.rating}</td>
                     <td>
                       <button onClick={() => pemicuEdit(film)} className="btn-edit-kecil">Edit</button>
