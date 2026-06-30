@@ -147,7 +147,7 @@ const Home = () => {
             <MovieCard image="/images/the-tomorrow-war.png" badge="Top 10" cardType="3" />
             <MovieCard image="/images/quantumania.png" badge="Top 10" cardType="3" />
             <MovieCard image="/images/guardians-of-the-galaxy.png" badge="Top 10" cardType="3" />
-            <MovieCard image="/images/a-man-called-otto.png" badge="Top 10" cardType="3" />
+            <MovieCard image="/images/amco.png" badge="Top 10" cardType="3" />
             <MovieCard image="/images/the-little-mermaid.png" badge="Top 10" cardType="3" />
           </div>
           <img src="/images/arrow-left-icon.png" alt="arrow-right" className="arrow-right-icon" />

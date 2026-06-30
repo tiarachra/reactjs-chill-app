@@ -334,7 +334,7 @@ body {
 
 .slider-wrapper > .arrow-right-icon {
     right: 0;
-    transform: translateY(-50%) rotate(180deg);
+    transform: translateY(-50%) scaleX(-1);
 }
 
 /* Movie Card 1 */
@@ -810,6 +810,7 @@ footer {
 
     .slider-wrapper > .arrow-right-icon {
         right: -18px;
+        transform: translateY(-50%) scaleX(-1);
     }
 
     .slider-wrapper > .arrow-left-icon:hover,
